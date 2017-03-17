@@ -1,4 +1,4 @@
-var createDotsplay = require('./lib/dotsplay');
+var createDotsplay = require('.');
 
 var container = document.querySelector('.container')
 container.style.height = '500px';
