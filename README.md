@@ -1,6 +1,6 @@
 # dotsplay
 
-Using `box-shadow` to render shapes.
+Use `box-shadow` to render shapes.
 
 ## Install
 
@@ -14,7 +14,7 @@ const dotsplay = require('dotsplay')(container);
 
 // define dot types
 dotsplay.defineCircle('small-dot', 20);
-dotsplay.defineBox('big-rect', 50, 60);
+dotsplay.defineRect('big-rect', 50, 60);
 
 // make dots with position, color and type
 const dots = [

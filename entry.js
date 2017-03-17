@@ -33,7 +33,7 @@ var dotsplay = createDotsplay(container);
 
 dotsplay.defineCircle('big-dot', 30);
 dotsplay.defineCircle('small-dot', 20);
-dotsplay.defineBox('small-rect', 10, 15);
+dotsplay.defineRect('small-rect', 10, 15);
 
 function render() {
   dotsplay.render(dots);
