@@ -4,7 +4,7 @@
   "description": "",
   "main": "demo1.js",
   "scripts": {
-    "watch": "webpack-dev-server"
+    "start": "webpack-dev-server"
   },
   "keywords": [],
   "author": "",
