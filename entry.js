@@ -2,7 +2,6 @@ var createDotsplay = require('.');
 
 var container = document.querySelector('.container')
 container.style.height = '500px';
-container.style.position = 'relative';
 
 var dots = [
   {

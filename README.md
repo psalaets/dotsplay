@@ -10,7 +10,8 @@ Use `box-shadow` to render shapes.
 
 ```js
 const container = document.querySelector(...);
-const dotsplay = require('dotsplay')(container);
+const createDotsplay = require('dotsplay');
+const dotsplay = createDotsplay(container);
 
 // define dot types
 dotsplay.defineCircle('small-dot', 20);
@@ -35,6 +36,10 @@ const dots = [
 // render dots
 dotsplay.render(dots);
 ```
+
+## Gotchas
+
+1. `container` passed to `createDotsplay()` will be given `position: relative` via inline style.
 
 ## License
 
