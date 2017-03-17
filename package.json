@@ -1,7 +1,7 @@
 {
   "name": "dotsplay",
-  "version": "1.0.0",
-  "description": "box-shadow experiment",
+  "version": "1.0.1",
+  "description": "Use box-shadow to render shapes",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
