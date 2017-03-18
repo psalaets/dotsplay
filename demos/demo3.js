@@ -9,6 +9,9 @@ const clockAxis = {x: 350, y: 350};
 const tickSize = 10;
 
 dotsplay.defineRect('tick', tickSize, tickSize);
+dotsplay.defineRect('seconds-hand', tickSize, tickSize);
+dotsplay.defineRect('minutes-hand', tickSize, tickSize);
+dotsplay.defineRect('hours-hand', tickSize, tickSize);
 
 const clockFace = [];
 
@@ -29,17 +32,17 @@ function render(date) {
   let totalMinutes = (date.getHours() - 12) * 60 + date.getMinutes();
   let hoursRadians = normalizedToRadians(totalMinutes / (12 * 60));
 
-  dots.push(...clockHand(clockAxis, clockRadius * 0.7, hoursRadians, 'black'));
+  dots.push(...clockHand(clockAxis, clockRadius * 0.7, hoursRadians, 'black', 'hours-hand'));
 
   // minutes hand
   let minutesRadians = normalizedToRadians(date.getMinutes() / 60);
 
-  dots.push(...clockHand(clockAxis, clockRadius, minutesRadians, 'black'));
+  dots.push(...clockHand(clockAxis, clockRadius, minutesRadians, 'black', 'minutes-hand'));
 
   // seconds hand
   let secondsRadians = normalizedToRadians(date.getSeconds() / 60);
 
-  dots.push(...clockHand(clockAxis, clockRadius, secondsRadians, 'red'));
+  dots.push(...clockHand(clockAxis, clockRadius, secondsRadians, 'red', 'seconds-hand'));
 
   // 1-12 markers
   dots.push(...clockFace);
@@ -72,7 +75,7 @@ function degreesToRadians(degrees) {
   return degrees * Math.PI / 180;
 }
 
-function clockHand(start, radius, radians, color) {
+function clockHand(start, radius, radians, color, type) {
   var end = endPoint(start, radius, radians);
   return [...line(start, end)]
     .filter((p, i) => i % tickSize === 0)
@@ -81,7 +84,7 @@ function clockHand(start, radius, radians, color) {
         x: p.x,
         y: p.y,
         color: color,
-        type: 'tick'
+        type: type
       };
     });
 }
