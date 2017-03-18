@@ -49,7 +49,7 @@ function render(date) {
 
 setInterval(function() {
   render(new Date());
-}, 101);
+}, 200);
 
 // TODO become smarter and make this better
 function normalizedToRadians(value) {
