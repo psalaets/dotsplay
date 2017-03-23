@@ -1,4 +1,5 @@
 const line = require('bresenham-line');
+const timeRadians = require('time-radians');
 
 const createDotsplay = require('..');
 const container = document.querySelector('.container');
@@ -29,18 +30,17 @@ function render(date) {
   let dots = [];
 
   // hours hand
-  let totalMinutes = (date.getHours() - 12) * 60 + date.getMinutes();
-  let hoursRadians = normalizedToRadians(totalMinutes / (12 * 60));
+  let hoursRadians = timeRadians.hoursHand(date.getHours(), date.getMinutes());
 
   dots.push(...clockHand(clockAxis, clockRadius * 0.7, hoursRadians, 'black', 'hours-hand'));
 
   // minutes hand
-  let minutesRadians = normalizedToRadians(date.getMinutes() / 60);
+  let minutesRadians = timeRadians.minutesHand(date.getMinutes(), date.getSeconds());
 
   dots.push(...clockHand(clockAxis, clockRadius, minutesRadians, 'black', 'minutes-hand'));
 
   // seconds hand
-  let secondsRadians = normalizedToRadians(date.getSeconds() / 60);
+  let secondsRadians = timeRadians.secondsHand(date.getSeconds());
 
   dots.push(...clockHand(clockAxis, clockRadius, secondsRadians, 'red', 'seconds-hand'));
 
@@ -53,27 +53,6 @@ function render(date) {
 setInterval(function() {
   render(new Date());
 }, 200);
-
-// TODO become smarter and make this better
-function normalizedToRadians(value) {
-  if (value >= 0 && value < 0.25) {
-    // top right
-    return degreesToRadians(90) - degreesToRadians(90 * (value - 0) / 0.25);
-  } else if (value >= 0.25 && value < 0.50) {
-    // bottom right
-    return degreesToRadians(360) - degreesToRadians(90 * (value - 0.25) / 0.25);
-  } else if (value >= 0.50 && value < 0.75) {
-    // bottom left
-    return degreesToRadians(270) - degreesToRadians(90 * (value - 0.5) / 0.25);
-  } else {
-    // top left
-    return degreesToRadians(180) - degreesToRadians(90 * (value - 0.75) / 0.25);
-  }
-}
-
-function degreesToRadians(degrees) {
-  return degrees * Math.PI / 180;
-}
 
 function clockHand(start, radius, radians, color, type) {
   var end = endPoint(start, radius, radians);
